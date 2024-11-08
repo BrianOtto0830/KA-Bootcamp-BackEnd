@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { compareSync, hashSync } from "bcrypt";
 import { SignJWT } from "jose";
 
+
 export async function POST(request: Request) {
   try {
     //get data from request
