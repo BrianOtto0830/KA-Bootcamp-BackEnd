@@ -23,8 +23,14 @@ model User {
   phoneNumber String
   createdAt   DateTime @default(now())
   orders      Order[]
+  roles       Roles
 
   @@map("users")
+}
+
+enum Roles {
+  ADMIN
+  CUSTOMER
 }
 
 model Category {
@@ -67,11 +73,11 @@ model Color {
 }
 
 model Order {
-  id      Int          @id @default(autoincrement())
-  status  OrderStatus  @default(PENDING)
-  invoice Invoice?
-  items   OrderItems[]
-  userId  Int
+  id     Int          @id @default(autoincrement())
+  status OrderStatus  @default(PENDING)
+  // invoice Invoice?
+  items  OrderItems[]
+  userId Int
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -101,52 +107,52 @@ model OrderItems {
   @@map("order_items")
 }
 
-model Invoice {
-  id             Int           @id @default(autoincrement())
-  orderId        Int?          @unique
-  city           String
-  country        String
-  postalCode     String
-  state          String
-  streetLine1    String?
-  streetLine2    String?
-  xenditUrl      String?       @db.Text
-  paymentMethod  String?
-  paymentChannel String?
-  amount         Float
-  status         InvoiceStatus @default(PENDING)
-  createdAt      DateTime      @default(now())
+// model Invoice {
+//   id             Int           @id @default(autoincrement())
+//   orderId        Int?          @unique
+//   city           String
+//   country        String
+//   postalCode     String
+//   state          String
+//   streetLine1    String?
+//   streetLine2    String?
+//   xenditUrl      String?       @db.Text
+//   paymentMethod  String?
+//   paymentChannel String?
+//   amount         Float
+//   status         InvoiceStatus @default(PENDING)
+//   createdAt      DateTime      @default(now())
 
-  order          Order?          @relation(fields: [orderId], references: [id], onDelete: SetNull)
-  invoiceTermins InvoiceTermin[]
+//   order          Order?          @relation(fields: [orderId], references: [id], onDelete: SetNull)
+//   invoiceTermins InvoiceTermin[]
 
-  @@map("invoices")
-}
+//   @@map("invoices")
+// }
 
-model InvoiceTermin {
-  id        Int           @id @default(autoincrement())
-  invoiceId Int
-  amount    Float
-  status    InvoiceStatus @default(PENDING)
-  createdAt DateTime      @default(now())
+// model InvoiceTermin {
+//   id        Int           @id @default(autoincrement())
+//   invoiceId Int
+//   amount    Float
+//   status    InvoiceStatus @default(PENDING)
+//   createdAt DateTime      @default(now())
 
-  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+//   invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 
-  @@map("invoice_termins")
-}
+//   @@map("invoice_termins")
+// }
 
-enum InvoiceStatus {
-  PENDING
-  PAID
-  EXPIRED
-}
+// enum InvoiceStatus {
+//   PENDING
+//   PAID
+//   EXPIRED
+// }
 
-model Notification {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?  @db.Text
-  createdAt   DateTime @default(now())
-  link        String
+// model Notification {
+//   id          Int      @id @default(autoincrement())
+//   title       String
+//   description String?  @db.Text
+//   createdAt   DateTime @default(now())
+//   link        String
 
-  @@map("notifications")
-}
+//   @@map("notifications")
+// }

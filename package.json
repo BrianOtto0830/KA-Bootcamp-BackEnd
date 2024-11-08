@@ -13,7 +13,9 @@
     "@supabase/supabase-js": "^2.45.3",
     "apexcharts": "^3.45.2",
     "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
     "flatpickr": "^4.6.13",
+    "jose": "^5.9.6",
     "jsvectormap": "^1.6.0",
     "lucide-react": "^0.438.0",
     "next": "^14.2.4",
@@ -27,6 +29,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
