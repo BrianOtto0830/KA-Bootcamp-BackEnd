@@ -14,8 +14,13 @@ export default async function ProductsPage() {
       category: true,
       colors: true,
     },
+    orderBy: {
+      createdAt: "asc",
+    },
   });
+
   console.log(products);
+  
   return (
     <div>
       <Breadcrumb pageName="Products" />

@@ -192,22 +192,22 @@ export async function deleteCategory(id: number) {
     }
   }
 }
-//delete product
-// export async function deleteProduct(id: number) {
-//   try {
-//     await prisma.product.delete({
-//       where: {
-//         id: Number(id),
-//       },
-//     });
-//     revalidatePath("/products");
-//     return {
-//       success: true,
-//     };
-//   } catch (err: any) {
-//     console.log(err);
-//   }
-// }
+// delete product
+export async function deleteProduct(id: number) {
+  try {
+    await prisma.product.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    revalidatePath("/products");
+    return {
+      success: true,
+    };
+  } catch (err: any) {
+    console.log(err);
+  }
+}
 
 //create product
 export async function createProduct(
