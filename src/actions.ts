@@ -272,6 +272,7 @@ export async function updateProduct(
   }[],
   images: string[],
   id: number,
+  idsColor: number[]
 ) {
   try {
     const body = {
@@ -301,6 +302,7 @@ export async function updateProduct(
     });
 
     for (const color of colors) {
+      if (color.id) {
       await prisma.color.create({
         data: {
           color: color.color,
@@ -308,7 +310,26 @@ export async function updateProduct(
           productId: product.id,
         },
       });
+    } else{
+      await prisma.color.update({
+        where: {
+          id: color.id,
+        },
+        data: {
+          color: color.color,
+          quantity: color.quantity,
+        },
+      });
     }
+  }
+  
+  for (const id of idsColor){
+    await prisma.color.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
 
     return {
       success: true,

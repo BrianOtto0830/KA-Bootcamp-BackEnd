@@ -6,11 +6,11 @@ const nextConfig = {
         hostname: "nafyopizhmmgxzbjaejy.supabase.co",
       },
       {
-        hostname: "awsimages.detik.net.id",
+        hostname: "www.static-src.com",
       },
       {
-        hostname: "pkdlvjkjcznmtmivzkqc.supabase.co",
-      },
+        hostname: "qhsdnskiusrydliavrxp.supabase.co",
+      }
     ],
   },
 };

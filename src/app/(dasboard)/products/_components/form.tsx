@@ -16,6 +16,7 @@ interface FormProductProps {
 }
 
 interface Color {
+  id?: number;
   color: string;
   quantity: number;
 }
@@ -26,6 +27,7 @@ export default function FormProduct({ categories, product }: FormProductProps) {
     product ? product.images : imagesLocal,
   );
   const router = useRouter();
+  const [deleteColors, setDeleteColors] = useState<number[]>([]);
 
   const [colors, setColors] = useState<Color[]>(
     product
@@ -40,7 +42,7 @@ export default function FormProduct({ categories, product }: FormProductProps) {
 
   async function handleSubmit(formData: FormData) {
     const results = product
-      ? await updateProduct(formData, colors, images, product.id)
+      ? await updateProduct(formData, colors, images, product.id, deleteColors)
       : await createProduct(formData, colors, images);
 
     if (results.success) {
@@ -62,8 +64,12 @@ export default function FormProduct({ categories, product }: FormProductProps) {
     setColors([...colors, { color: "#000000", quantity: 0 }]);
   }
 
-  function handleDeleteColor(index: number) {
+  function handleDeleteColor(index: number, id?: number) {
+    if(id){
+      setDeleteColors([...deleteColors, id]);
+    }
     setColors(colors.filter((_, i) => i !== index));
+    
   }
 
   function handleChangeColor(index: number, color: string, quantity: number) {
@@ -120,6 +126,8 @@ export default function FormProduct({ categories, product }: FormProductProps) {
       toast.error(err?.response?.data?.message || "Delete file failed");
     }
   }
+
+  
   return (
     <div>
       <div className="grid grid-cols-2">
