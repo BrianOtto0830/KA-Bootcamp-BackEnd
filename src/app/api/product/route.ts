@@ -81,12 +81,12 @@ export async function POST(request: Request) {
 //read
 export async function GET(request: Request) {
   try {
-    const user = await verifyUser(request);
-    console.log(user);
+    // const user = await verifyUser(request);
+    // console.log(user);
 
-    if (!user) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    // if (!user) {
+    //   return new NextResponse("Unauthorized", { status: 401 });
+    // }
     const products = await prisma.product.findMany({
       include: {
         colors: true,
@@ -104,6 +104,7 @@ export async function GET(request: Request) {
       },
     );
   } catch (err: any) {
+    console.log(err);
     return NextResponse.json(
       {
         data: null,
