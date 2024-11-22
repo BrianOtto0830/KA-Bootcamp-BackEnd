@@ -82,6 +82,11 @@ model Order {
   items  OrderItems[]
   userId Int
 
+  address     String?
+  postalCode  String?
+  country     String?
+  city        String?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())

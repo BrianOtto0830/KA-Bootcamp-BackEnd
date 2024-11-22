@@ -49,13 +49,17 @@ export async function POST(request: Request) {
         data: {
           status: "PENDING",
           userId: user.id,
-          //   items: {
-          //     create: (body.items as OrderPayload[]).map((item) => ({
-          //       colorId: item.colorId,
-          //       productId: item.productId,
-          //       quantity: item.quantity,
-          //     })),
-          //   },
+          address: body.address,
+          postalCode: body.postalCode,
+          city: body.city,
+          country: body.country,
+            items: {
+              create: (body.items as OrderPayload[]).map((item) => ({
+                colorId: item.colorId,
+                productId: item.productId,
+                quantity: item.quantity,
+              })),
+            },
         },
         include: {
           user: {
@@ -105,5 +109,36 @@ export async function POST(request: Request) {
     } else {
       return new NextResponse("Internal server error", { status: 500 });
     }
+  }
+}
+
+export async function GET(request: Request) {
+  try {
+    const user = await verifyUser(request);
+
+    if (!user) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const orders = await prisma.order.findMany({
+      where: {
+        userId: user.id,
+      },
+      include: {
+        items: {
+          include: {
+            product: {
+              include:{
+                category: true,
+                colors: true
+              }
+            }
+          },
+        },
+      },
+    });
+    return NextResponse.json(orders, {status: 200});
+  } catch (error: any){
+    return new NextResponse("Internal server error", { status: 500 });
   }
 }
