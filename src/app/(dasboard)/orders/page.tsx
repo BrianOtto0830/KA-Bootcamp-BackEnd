@@ -1,6 +1,8 @@
+import UpdateDeleteBtn from "@/app/_components/update-delete-btn";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import prisma from "@/lib/prisma";
 import dayjs from "dayjs";
+import { Link } from "lucide-react";
 
 export default async function OrdersPage() {
     const orders = await prisma.order.findMany({
@@ -39,6 +41,9 @@ export default async function OrdersPage() {
                         </th>
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
                         Create At
+                        </th>
+                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        Action
                         </th>
                     </tr>
                     </thead>
@@ -80,8 +85,18 @@ export default async function OrdersPage() {
                             <p className="text-black dark:text-white">
                             {dayjs(order.createdAt).format("DD MMMM YYYY")}
                             </p>
-                        </td>                       
-                                               
+                        </td>   
+                        {/* Action See Order Details */}
+                        <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                            
+                        </td>                      
+                        <div className="col-span-1 flex items-center">
+                            {/* <UpdateDeleteBtn
+                                url={`products/${product.id}`}
+                                type="product"
+                                id={product.id}
+                            /> */}
+                        </div>                 
                         </tr>
                     ))}
                     </tbody>
