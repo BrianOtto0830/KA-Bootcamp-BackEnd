@@ -26,7 +26,7 @@ export default async function FormOrder() {
                 <table className="w-full table-auto">
                     <thead>
                     <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                        <th className="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
+                        <th className="px-4 py-4 font-medium text-black dark:text-white">
                         Order ID
                         </th>
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
@@ -37,9 +37,6 @@ export default async function FormOrder() {
                         </th>
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
                         Quantity
-                        </th>
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
-                        Create At
                         </th>
                     </tr>
                     </thead>
@@ -61,7 +58,12 @@ export default async function FormOrder() {
                         {/* Color */}
                         <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                             <h5 className="font-medium text-black dark:text-white">
-                            {order.items[0].colorId}
+                            {
+                                // Cari warna berdasarkan ID
+                                order.items[0].product.colors.find(
+                                    (color) => color.id === order.items[0].colorId
+                                )?.color || "Unknown Color" 
+                            }
                             </h5>
                         </td>
                         {/* Quantity */}

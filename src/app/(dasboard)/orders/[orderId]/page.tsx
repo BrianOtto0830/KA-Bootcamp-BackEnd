@@ -17,6 +17,7 @@ export default async function OrderDetail({
         include: {
           product: {
             include: {
+              category: true,
               colors: true,
             },
           },
@@ -36,6 +37,8 @@ export default async function OrderDetail({
     <div>
       <Breadcrumb pageName="Product Detail" />
       {/* form order here */}
+      <FormOrder categories={categories} order={order} />
+      
     </div>
   );
 }

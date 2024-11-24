@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 interface UpdateDeleteBtnProps {
   url: string;
-  type: "category" | "product";
+  type: "category" | "product" | "order";
   id: number;
 }
 
