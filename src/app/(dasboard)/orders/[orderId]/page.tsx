@@ -17,7 +17,6 @@ export default async function OrderDetail({
         include: {
           product: {
             include: {
-              category: true,
               colors: true,
             },
           },
@@ -28,16 +27,12 @@ export default async function OrderDetail({
   if (!order) {
     return notFound();
   }
-  const categories = await prisma.category.findMany({
-    where: {
-      isActive: true,
-    },
-  });
+  
   return (
     <div>
       <Breadcrumb pageName="Product Detail" />
       {/* form order here */}
-      <FormOrder categories={categories} order={order} />
+      <FormOrder order={order} />
       
     </div>
   );

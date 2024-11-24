@@ -2,7 +2,11 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import prisma from "@/lib/prisma";
 import dayjs from "dayjs";
 
-export default async function FormOrder() {
+interface FormOrderProps {
+    order: any; // Anda bisa mengganti dengan tipe data yang sesuai
+}
+
+export default async function FormOrder({ order }: FormOrderProps) {
     const orders = await prisma.order.findMany({
         include: {
             items:{
@@ -30,13 +34,13 @@ export default async function FormOrder() {
                         Order ID
                         </th>
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
-                        Product
+                        Product Name
                         </th>
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
                         Color
                         </th>
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
-                        Quantity
+                        Items Ordered
                         </th>
                     </tr>
                     </thead>
