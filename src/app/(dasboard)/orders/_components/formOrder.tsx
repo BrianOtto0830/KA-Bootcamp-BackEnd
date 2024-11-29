@@ -7,7 +7,7 @@ interface FormOrderProps {
 }
 
 export default async function FormOrder({ order }: FormOrderProps) {
-    const orders = await prisma.order.findMany({
+    const orders = await prisma.order.findFirst({
         include: {
             items:{
                 include:{
@@ -59,7 +59,7 @@ export default async function FormOrder({ order }: FormOrderProps) {
                             {order.items[0].product.name}
                             </h5>
                         </td>
-                        {/* Color */}
+                        {/* Items Color */}
                         <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                             <h5 className="font-medium text-black dark:text-white">
                             {

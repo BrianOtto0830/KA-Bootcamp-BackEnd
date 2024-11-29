@@ -8,6 +8,7 @@ export default async function OrderDetail({
 }: {
   params: { orderId: string };
 }) {
+  //code untuk menampilkan data get byId
   const order = await prisma.order.findUnique({
     where: {
       id: Number(params.orderId),

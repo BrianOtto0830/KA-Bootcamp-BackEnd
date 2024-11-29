@@ -12,18 +12,17 @@ export async function POST(request: Request) {
     userSignInSchema.parse(body);
 
     //get user by email
-
     const user = await prisma.user.findUnique({
       where: {
         email: body.email,
       },
     });
 
-    //cek if user exsting or not
+    //cek if user ada atau tidak
     if (!user) {
       return new NextResponse("user not found", { status: 404 });
     }
-    //cek if user role is ADMIN
+    //cek if user role is CUSTOMER jika tidak tampilkan status 401 anda bukan customer
     if (user.roles !== "CUSTOMER") {
       return new NextResponse("User not customer", { status: 401 });
     }
@@ -37,7 +36,7 @@ export async function POST(request: Request) {
         status: 401,
       });
     }
-    // create secret
+    // create secret dengan encode menghashing password defaultnya seperti ini
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
     const token = await new SignJWT({
