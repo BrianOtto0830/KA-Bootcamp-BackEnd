@@ -7,20 +7,7 @@ interface FormOrderProps {
 }
 
 export default async function FormOrder({ order }: FormOrderProps) {
-    const orders = await prisma.order.findFirst({
-        include: {
-            items:{
-                include:{
-                    product: {
-                        include: {
-                            colors: true
-                        }
-                    },
-                }
-            }
-        }
-    }
-    );
+    
 
     return (
         <div>
@@ -45,7 +32,7 @@ export default async function FormOrder({ order }: FormOrderProps) {
                     </tr>
                     </thead>
                     <tbody>
-                    {orders.map((order, key) => (
+                    {order.items.map((item, key) => (
                         <tr key={key}>
                         {/* Order ID */}
                         <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
