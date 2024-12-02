@@ -65,6 +65,7 @@ export default function FormProduct({ categories, product }: FormProductProps) {
   }
 
   function handleDeleteColor(index: number, id?: number) {
+    console.log('Deleting color at index:', index, 'with id:', id);
     if(id){
       setDeleteColors([...deleteColors, id]);
     }
@@ -151,7 +152,7 @@ export default function FormProduct({ categories, product }: FormProductProps) {
                     type="text"
                     required
                     name="name"
-                    placeholder="Enter Category name"
+                    placeholder="Enter Product name"
                     className="mb-4.5 w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>

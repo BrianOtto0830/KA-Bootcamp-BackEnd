@@ -32,7 +32,7 @@ export default async function FormOrder({ order }: FormOrderProps) {
                     </tr>
                     </thead>
                     <tbody>
-                    {order.items.map((item, key) => (
+                    {order.items.map((item: any, key: number) => (
                         <tr key={key}>
                         {/* Order ID */}
                         <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">

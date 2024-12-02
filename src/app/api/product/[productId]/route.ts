@@ -160,12 +160,12 @@ export async function GET(
   { params }: { params: { productId: string } },
 ) {
   try {
-    const user = await verifyUser(request);
-    console.log(user);
+    // const user = await verifyUser(request);
+    // console.log(user);
 
-    if (!user) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    // if (!user) {
+    //   return new NextResponse("Unauthorized", { status: 401 });
+    // }
     const productId = Number(params.productId);
 
     if (productId) {
