@@ -160,18 +160,16 @@ export async function GET(
   { params }: { params: { productId: string } },
 ) {
   try {
-    // const user = await verifyUser(request);
-    // console.log(user);
-
-    // if (!user) {
-    //   return new NextResponse("Unauthorized", { status: 401 });
-    // }
     const productId = Number(params.productId);
 
     if (productId) {
       // Fetch the product by its ID
       const product = await prisma.product.findUnique({
         where: { id: productId },
+        include: {
+          category: true,
+          colors: true,
+        },
       });
 
       if (!product) {

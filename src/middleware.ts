@@ -25,8 +25,6 @@ export async function middleware(request: NextRequest) {
   } else {
     return NextResponse.next();
   }
-  
-  
 }
 export const config: MiddlewareConfig = {
   matcher: ["/", "/product/:path*", "/categories/:path*"],

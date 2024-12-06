@@ -70,16 +70,17 @@ export async function POST(request: Request) {
         },
       });
 
-      for (const item of body.items as OrderPayload[]) {
-        await ctx.orderItems.create({
-          data: {
-            quantity: item.quantity,
-            productId: item.productId,
-            colorId: item.colorId,
-            orderId: createdOrder.id,
-          },
-        });
-      }
+      // ku komen untuk cek apakah ini yang membuat ordernya ke double
+      // for (const item of body.items as OrderPayload[]) {
+      //   await ctx.orderItems.create({
+      //     data: {
+      //       quantity: item.quantity,
+      //       productId: item.productId,
+      //       colorId: item.colorId,
+      //       orderId: createdOrder.id,
+      //     },
+      //   });
+      // }
 
       // Update stock for each item
       for (const item of body.items as OrderPayload[]) {
