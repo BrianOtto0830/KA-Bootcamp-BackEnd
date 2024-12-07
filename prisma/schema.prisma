@@ -106,6 +106,7 @@ model OrderItems {
   productId Int
   colorId   Int
   quantity  Int
+  image     String?
   createdAt DateTime @default(now())
 
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)

@@ -9,6 +9,7 @@ type OrderPayload = {
   productId: number;
   colorId: number;
   quantity: number;
+  image: string;
 };
 
 export async function POST(request: Request) {
@@ -58,6 +59,7 @@ export async function POST(request: Request) {
                 colorId: item.colorId,
                 productId: item.productId,
                 quantity: item.quantity,
+                image: item.image,
               })),
             },
         },
@@ -133,7 +135,8 @@ export async function GET(request: Request) {
                 category: true,
                 colors: true
               }
-            }
+            },
+            color: true
           },
         },
       },
