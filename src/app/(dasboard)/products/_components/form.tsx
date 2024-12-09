@@ -244,7 +244,6 @@ export default function FormProduct({ categories, product }: FormProductProps) {
                             item.quantity,
                           )
                         }
-                        defaultValue={item?.color}
                         value={item.color}
                         type="color"
                         required
@@ -259,7 +258,7 @@ export default function FormProduct({ categories, product }: FormProductProps) {
                             Number(e.target.value),
                           )
                         }
-                        defaultValue={item?.quantity}
+                        value={item?.quantity}
                         type="number"
                         required
                         name="quantity"
@@ -269,7 +268,7 @@ export default function FormProduct({ categories, product }: FormProductProps) {
 
                       <button
                         type="button"
-                        onClick={() => handleDeleteColor(index)}
+                        onClick={() => handleDeleteColor(index, item.id)}
                         className="col-span-1 w-full rounded-md bg-red py-3 text-white"
                       >
                         Delete

@@ -1,5 +1,6 @@
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
+export const revalidate = 0;
 
 export const metadata = {
   title: "TrendEra Backend Dashboard | TailAdmin",

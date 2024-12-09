@@ -29,6 +29,9 @@ export default async function FormOrder({ order }: FormOrderProps) {
                         <th className="px-4 py-4 font-medium text-black dark:text-white">
                         Items Ordered
                         </th>
+                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        Total Price
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,8 +65,15 @@ export default async function FormOrder({ order }: FormOrderProps) {
                             <h5 className="font-medium text-black dark:text-white">
                             {order.items[0].quantity}
                             </h5>
-                        </td>                                                                 
+                        </td>
+                        {/* Total Price */}
+                        <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                            <h5 className="font-medium text-black dark:text-white">
+                            {Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(order.items.reduce((total, item) => total + item.product.price * item.quantity, 0))}
+                            </h5>
+                        </td>                                                                   
                         </tr>
+
                     ))}
                     </tbody>
                 </table>

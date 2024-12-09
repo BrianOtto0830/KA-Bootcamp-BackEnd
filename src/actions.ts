@@ -301,8 +301,9 @@ export async function updateProduct(
       },
     });
 
+    console.log("colors", colors);
     for (const color of colors) {
-      if (color.id) {
+      if (!color.id) {
       await prisma.color.create({
         data: {
           color: color.color,
