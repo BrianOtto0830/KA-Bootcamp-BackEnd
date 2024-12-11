@@ -7,6 +7,7 @@ import ChatCard from "../Chat/ChatCard";
 import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
 import { Category, Color, OrderItems, Product, User } from "@prisma/client";
+import { Profit } from "@/types/profit";
 
 const MapOne = dynamic(() => import("@/components/Maps/MapOne"), {
   ssr: false,
@@ -20,9 +21,6 @@ type ECommerceProps = {
   customers: number,
   categories : (Category & {
     products: Product[];
-    _count: {
-      products: number;
-    };
   })[],
   products: (Product & {
     items: (OrderItems & {
@@ -32,6 +30,7 @@ type ECommerceProps = {
     category: Category;
   })[],
   orders: number,
+  profits: Profit[];
 };
 
 //parsing data propsnya disini
@@ -40,6 +39,7 @@ const ECommerce = ({
   categories,
   products,
   orders,
+  profits,
 }: ECommerceProps) => {
   //untuk menampilkan top product
   const topProducts = products.map((product) => {
@@ -145,7 +145,7 @@ const ECommerce = ({
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <ChartTwo />
+        <ChartTwo profits = {profits} />
         <ChartThree categories = {categories} />
         <div className="col-span-8 xl:col-span-12">
           <TableOne products = {topProducts} />

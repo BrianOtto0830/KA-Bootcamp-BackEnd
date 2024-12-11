@@ -3,6 +3,11 @@
 import { ApexOptions } from "apexcharts";
 import React from "react";
 import dynamic from "next/dynamic";
+import { Profit } from "@/types/profit";
+
+type ChartTwoProps = {
+  profits : Profit[];
+};
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -60,7 +65,7 @@ const options: ApexOptions = {
     fontSize: "14px",
 
     markers: {
-      radius: 99,
+      // radius: 99,
     },
   },
   fill: {
@@ -75,17 +80,32 @@ interface ChartTwoState {
   }[];
 }
 
-const ChartTwo: React.FC = () => {
-  const series = [
-    {
-      name: "Sales",
-      data: [44, 55, 41, 67, 22, 43, 65],
-    },
-    {
-      name: "Revenue",
-      data: [13, 23, 20, 8, 13, 27, 15],
-    },
-  ];
+const ChartTwo = ({ profits }: ChartTwoProps) => {
+  
+  const series = profits.map((profit) => {
+  const { orders } = profit;
+  let total = 0;
+
+  // Menghitung total profit dari setiap order
+  orders.forEach((order) => {
+    order.items.forEach((item) => {
+      total += item.product.price * item.quantity;
+    });
+  });
+
+  return total;
+  });
+
+  // const series = [
+  //   {
+  //     name: "Sales",
+  //     data: [44, 55, 41, 67, 22, 43, 65],
+  //   },
+  //   {
+  //     name: "Revenue",
+  //     data: [13, 23, 20, 8, 13, 27, 15],
+  //   },
+  // ];
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">

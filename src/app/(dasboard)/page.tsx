@@ -1,6 +1,7 @@
 import ECommerce from "@/components/Dashboard/E-commerce";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import prisma from "@/lib/prisma";
+import { getProfit } from "@/lib/profit";
+
 
 export default async function Home() {
   //tampilkan semua category
@@ -31,10 +32,15 @@ export default async function Home() {
       roles: "CUSTOMER"
     }
   });
+
+  const profits = await getProfit();
+  console.log("cek profits: ",profits);
+
+  
   
   return (
     <div>
-      <ECommerce customers={customer} categories={categories} products={products} orders={orders} />
+      <ECommerce customers={customer} categories={categories} products={products} orders={orders} profits={profits} />
     </div>
   );
 }
