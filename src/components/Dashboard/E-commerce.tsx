@@ -18,7 +18,8 @@ const ChartThree = dynamic(() => import("@/components/Charts/ChartThree"), {
 
 type ECommerceProps = {
   customers: number,
-  categories: (Category & {
+  categories : (Category & {
+    products: Product[];
     _count: {
       products: number;
     };
