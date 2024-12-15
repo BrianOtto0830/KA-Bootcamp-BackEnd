@@ -55,7 +55,7 @@ export default async function FormOrder({ order }: FormOrderProps) {
                             {
                                 // Cari warna berdasarkan ID
                                 order.items[0].product.colors.find(
-                                    (color) => color.id === order.items[0].colorId
+                                    (color: any) => color.id === order.items[0].colorId
                                 )?.color || "Unknown Color" 
                             }
                             </h5>
@@ -69,7 +69,7 @@ export default async function FormOrder({ order }: FormOrderProps) {
                         {/* Total Price */}
                         <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                             <h5 className="font-medium text-black dark:text-white">
-                            {Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(order.items.reduce((total, item) => total + item.product.price * item.quantity, 0))}
+                            {Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(order.items.reduce((total: any, item: any) => total + item.product.price * item.quantity, 0))}
                             </h5>
                         </td>                                                                   
                         </tr>

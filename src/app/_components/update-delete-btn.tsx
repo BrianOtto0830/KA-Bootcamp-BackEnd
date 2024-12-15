@@ -28,11 +28,11 @@ export default function UpdateDeleteBtn({
         type === "category"
           ? await deleteCategory(id)
           : await deleteProduct(id);
-      if (res.success) {
-        Swal.fire("Success", res.message, "success");
+      if (res?.success) {
+        Swal.fire("Success", res?.message, "success");
         router.refresh();
       } else {
-        Swal.fire("Error", res.message, "error");
+        Swal.fire("Error", res?.message, "error");
       }
     }
   };

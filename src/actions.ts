@@ -185,10 +185,10 @@ export async function deleteCategory(id: number) {
   } catch (err: any) {
     console.log(err);
     if (err instanceof ZodError) {
-      return { success: false, error: "please insert a corect data" };
+      return { success: false, message: "please insert a corect data" };
       //end of if
     } else {
-      return { success: false, error: err?.message || "internal server eror" };
+      return { success: false, message: err?.message || "internal server eror" };
     }
   }
 }
@@ -206,6 +206,12 @@ export async function deleteProduct(id: number) {
     };
   } catch (err: any) {
     console.log(err);
+    if (err instanceof ZodError) {
+      return { success: false, message: "please insert a corect data" };
+      //end of if
+    } else {
+      return { success: false, message: err?.message || "internal server eror" };
+    }
   }
 }
 

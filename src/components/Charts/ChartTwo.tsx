@@ -55,7 +55,7 @@ const options: ApexOptions = {
   },
 
   xaxis: {
-    categories: ["M", "T", "W", "T", "F", "S", "S"],
+    categories: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
   },
   legend: {
     position: "top",
@@ -64,9 +64,9 @@ const options: ApexOptions = {
     fontWeight: 500,
     fontSize: "14px",
 
-    markers: {
-      // radius: 99,
-    },
+    // markers: {
+    //   // radius: 99,
+    // },
   },
   fill: {
     opacity: 1,
@@ -82,7 +82,7 @@ interface ChartTwoState {
 
 const ChartTwo = ({ profits }: ChartTwoProps) => {
   
-  const series = profits.map((profit) => {
+  const totalProfits = profits.map((profit) => {
   const { orders } = profit;
   let total = 0;
 
@@ -96,19 +96,15 @@ const ChartTwo = ({ profits }: ChartTwoProps) => {
   return total;
   });
 
-  // const series = [
-  //   {
-  //     name: "Sales",
-  //     data: [44, 55, 41, 67, 22, 43, 65],
-  //   },
-  //   {
-  //     name: "Revenue",
-  //     data: [13, 23, 20, 8, 13, 27, 15],
-  //   },
-  // ];
+  const series = [
+    {
+      name: "Profit",
+      data: totalProfits,
+    },
+  ];
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6">
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">

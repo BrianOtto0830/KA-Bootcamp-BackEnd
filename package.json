@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8000",
     "lint": "next lint"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "dayjs": "^1.11.13",
     "flatpickr": "^4.6.13",
     "jose": "^5.9.6",
+    "js-cookie": "^3.0.5",
     "jsvectormap": "^1.6.0",
     "lucide-react": "^0.438.0",
     "next": "^14.2.4",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
