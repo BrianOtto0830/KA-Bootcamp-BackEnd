@@ -106,6 +106,7 @@ export default async function ProductsPage() {
                         height: "20px",
                         width: "20px",
                         borderRadius: "50%",
+                        border: "1px solid #ccc",
                       }}
                     ></div>
                   </div>
