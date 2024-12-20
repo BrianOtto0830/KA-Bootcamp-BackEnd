@@ -1,37 +1,17 @@
 "use client";
 import axios from "axios";
 import Link from "next/link";
-
 import prisma from "@/lib/prisma";
 import { signIn } from "@/actions";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+
 export default function Form() {
-  // const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
 
-  //   try {
-  //     // mengambil data dari form
-  //     const formData = new FormData(event.currentTarget);
-
-  //     const data = axios.post("http://localhost:3000/api/auth/signin", {
-  //       // mengambil nilai yang di input dari name seperti name:"email" atau name:"pasword"
-  //       email: formData.get("email"),
-  //       password: formData.get("password"),
-  //     });
-
-  //     console.log(data);
-
-  //     alert("Sign in success");
-  //   } catch (err: any) {
-  //     console.log(err);
-  //     alert(err.message);
-  //   }
-  // };
   const router = useRouter();
+  
   const handleSignIn = async (formData: FormData) => {
     const result = await signIn(formData);
-
     console.log(result?.token);
 
     if (result.error) {
@@ -53,7 +33,6 @@ export default function Form() {
     console.log(result);
   };
   return (
-    // <form onSubmit={handleSignIn}>
     <form action={handleSignIn}>
       <div className="mb-4">
         <label className="mb-2.5 block font-medium text-black dark:text-white">
@@ -170,7 +149,7 @@ export default function Form() {
 
       <div className="mt-6 text-center">
         <p>
-          Don’t have any account?{" "}
+          Dont have any account?{" "}
           <Link href="/auth/signup" className="text-primary">
             Sign Up
           </Link>

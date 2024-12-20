@@ -82,18 +82,53 @@ interface ChartTwoState {
 
 const ChartTwo = ({ profits }: ChartTwoProps) => {
   
-  const totalProfits = profits.map((profit) => {
-  const { orders } = profit;
-  let total = 0;
+  const newTotalProfits = [
+    {
+      day: "Monday",
+      orders: profits.find((profit) => profit.day === "Monday")?.orders,
+    },
+    {
+      day: "Tuesday",
+      orders: profits.find((profit) => profit.day === "Tuesday")?.orders,
+    },
+    {
+      day: "Wednesday",
+      orders: profits.find((profit) => profit.day === "Wednesday")?.orders,
+    },
+    {
+      day: "Thursday",
+      orders: profits.find((profit) => profit.day === "Thursday")?.orders,
+    },
+    {
+      day: "Friday",
+      orders: profits.find((profit) => profit.day === "Friday")?.orders,
+    },
+    {
+      day: "Saturday",
+      orders: profits.find((profit) => profit.day === "Saturday")?.orders,
+    },
+    {
+      day: "Sunday",
+      orders: profits.find((profit) => profit.day === "Wednesday")?.orders,
+    },
+  ];
 
-  // Menghitung total profit dari setiap order
-  orders.forEach((order) => {
-    order.items.forEach((item) => {
-      total += item.product.price * item.quantity;
+  const totalProfits = newTotalProfits.map((profit) => {
+    const { orders } = profit;
+    let total = 0;
+
+    if (orders?.length === 0) {
+      return 0;
+    }
+
+    // Menghitung total profit dari setiap order
+    orders?.forEach((order) => {
+      order.items.forEach((item) => {
+        total += item.product.price * item.quantity;
+      });
     });
-  });
 
-  return total;
+    return total;
   });
 
   const series = [
@@ -102,6 +137,7 @@ const ChartTwo = ({ profits }: ChartTwoProps) => {
       data: totalProfits,
     },
   ];
+
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6">
