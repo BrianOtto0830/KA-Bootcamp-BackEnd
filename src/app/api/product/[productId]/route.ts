@@ -4,6 +4,7 @@ import { productSchema } from "@/schema/product";
 import { ZodError } from "zod";
 import prisma from "@/lib/prisma";
 import { verifyUser } from "@/lib/verify";
+import Swal from "sweetalert2";
 //update id
 type Color = {
   color: string;
@@ -65,11 +66,12 @@ export async function PATCH(
       });
     }
 
-    return NextResponse.json({
-      data: updateProduct,
-      success: true,
-      message: "Update Product succes",
+    Swal.fire({
+      icon: 'success',
+      title: 'Update Product success',
+      text: `Data: ${JSON.stringify(updateProduct)}`,
     });
+    
   } catch (err: any) {
     if (err instanceof ZodError) {
       return NextResponse.json(
