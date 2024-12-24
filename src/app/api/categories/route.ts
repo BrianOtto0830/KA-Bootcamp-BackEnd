@@ -27,11 +27,13 @@ export async function POST(request: Request) {
       },
     });
 
-    Swal.fire({
-      icon: 'success',
-      title: 'Create category success',
-      text: `Data: ${JSON.stringify(category)}`,
-    });
+    return NextResponse.json({
+      data: category,
+      success: true,
+      message: "Create category success",
+  }, {
+      status: 201, // Include the status code
+  });
   } catch (err: any) {
     if (err instanceof ZodError) {
       return NextResponse.json(

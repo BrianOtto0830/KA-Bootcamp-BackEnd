@@ -62,12 +62,13 @@ export async function POST(request: Request) {
       })),
     });
 
-    Swal.fire({
-      icon: 'success',
-      title: 'Create product success',
-      text: `Data: ${JSON.stringify(product)}`,
-      }
-    );
+    return NextResponse.json({
+      data: product,
+      success: true,
+      message: "Create product success",
+    }, {
+      status: 201, // Include the status code
+    });
   } catch (err: any) {
     console.log(err);
     return NextResponse.json({
