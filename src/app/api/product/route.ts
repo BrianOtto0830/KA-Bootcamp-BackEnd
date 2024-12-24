@@ -3,6 +3,9 @@ import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { verifyUser } from "@/lib/verify";
+import Swal from "sweetalert2";
+
+
 type Color = {
   color: string;
   quantity: number;
@@ -59,15 +62,11 @@ export async function POST(request: Request) {
       })),
     });
 
-    return NextResponse.json(
-      {
-        data: product,
-        success: true,
-        message: "Create product success",
-      },
-      {
-        status: 201,
-      },
+    Swal.fire({
+      icon: 'success',
+      title: 'Create product success',
+      text: `Data: ${JSON.stringify(product)}`,
+      }
     );
   } catch (err: any) {
     console.log(err);

@@ -4,6 +4,7 @@ import { userSignInSchema } from "@/schema/user";
 import { NextResponse } from "next/server";
 import { compareSync, hashSync } from "bcrypt";
 import { SignJWT } from "jose";
+import Swal from "sweetalert2";
 
 export async function POST(request: Request) {
   try {
