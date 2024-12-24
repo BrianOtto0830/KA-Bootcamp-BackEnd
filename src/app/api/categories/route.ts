@@ -4,6 +4,7 @@ import { categorySchema } from "@/schema/category";
 import { ZodError } from "zod";
 import { verifyUser } from "@/lib/verify";
 import prisma from "@/lib/prisma";
+import Swal from "sweetalert2";
 
 export async function POST(request: Request) {
   try {
@@ -26,16 +27,11 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(
-      {
-        data: category,
-        success: true,
-        message: "Create category success",
-      },
-      {
-        status: 201,
-      },
-    );
+    Swal.fire({
+      icon: 'success',
+      title: 'Create category success',
+      text: `Data: ${JSON.stringify(category)}`,
+    });
   } catch (err: any) {
     if (err instanceof ZodError) {
       return NextResponse.json(
